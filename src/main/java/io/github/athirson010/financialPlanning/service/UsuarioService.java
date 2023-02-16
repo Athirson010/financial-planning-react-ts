@@ -9,6 +9,8 @@ import io.github.athirson010.financialPlanning.exception.SenhaInvalidaException;
 import io.github.athirson010.financialPlanning.jwt.JwtService;
 import io.github.athirson010.financialPlanning.repository.UsuarioRepository;
 import org.modelmapper.ModelMapper;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Example;
 import org.springframework.data.domain.ExampleMatcher;
@@ -31,6 +33,8 @@ import static org.springframework.http.HttpStatus.UNAUTHORIZED;
 
 @Service
 public class UsuarioService implements UserDetailsService {
+    Logger logger = LoggerFactory.getLogger(UsuarioService.class);
+
     @Autowired
     UsuarioRepository repository;
     @Autowired
@@ -44,6 +48,7 @@ public class UsuarioService implements UserDetailsService {
     public void criarUsuario(UsuarioModel usuario) {
         buscarUsuarioPorEmail(usuario.getEmail()).ifPresentOrElse(
                 (usuarioModel) -> {
+                    logger.error("Email já cadastrado");
                     throw new ResponseStatusException(UNAUTHORIZED, "Email já cadastrado");
                 }, () -> {
                     usuario.setSenha(encoder.encode(usuario.getSenha()));
@@ -59,6 +64,7 @@ public class UsuarioService implements UserDetailsService {
         UserDetails user = loadUserByUsername(usuario.getEmail());
 
         if (encoder.matches(usuario.getSenha(), user.getPassword())) {
+            logger.info("usuario autenticado");
             return user;
         }
         throw new SenhaInvalidaException();
@@ -142,6 +148,7 @@ public class UsuarioService implements UserDetailsService {
 
     public UsuarioModel buscarUsuarioLogado() {
         String username = ((UserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal()).getUsername();
+        logger.info("Buscando usuario logado");
         return repository.findByEmail(username).orElseGet(() -> {
             throw new NaoEncontradoException("Usuario");
         });

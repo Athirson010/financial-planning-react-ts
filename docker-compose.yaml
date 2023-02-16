@@ -28,8 +28,8 @@ services:
     restart: on-failure
     environment:
       #OTEL_JAVAAGENT_DEBUG: true
-      OTEL_EXPORTER_OTLP_ENDPOINT: 'https://20fd5b4c700d4377b7b1b97229539656.apm.us-central1.gcp.cloud.es.io:443'
-      OTEL_EXPORTER_OTLP_METRICS_HEADERS: Authorization=Bearer TI8chvPYR6u86v0QV5
+      OTEL_EXPORTER_OTLP_ENDPOINT: 'https://4175c4dc5452459d87a21c37261a482e.apm.us-central1.gcp.cloud.es.io:443'
+      OTEL_EXPORTER_OTLP_METRICS_HEADERS: Authorization=Bearer ECABHHUJnZDiOftQ4G
       OTEL_TRACES_EXPORTER: otlp
       OTEL_METRICS_EXPORTER: otlp
       OTEL_LOGS_EXPORTER_OTLP: otlp
