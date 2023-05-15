@@ -4,6 +4,7 @@ export const tam = (size, width = 1440) => `${(size / width) * 100}vw`;
 
 export const GlobalStyle = createGlobalStyle`
   :root {
+  --greenBackground: #295650;
   --purple: #6930C3;
   --purpleDark: #5423A0;
   --redError:#c50000;

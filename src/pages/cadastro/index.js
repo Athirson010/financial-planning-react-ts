@@ -1,22 +1,9 @@
-import React, { useEffect, useState } from 'react'
+import React from 'react'
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import * as axios from 'axios';
 
 export default function Home() {
-    const [nutri, setNutri] = useState([]);
-    
-    useEffect(() => {
-        axios({
-            method: 'get',
-            url: 'http://localhost:8080/cep/08581015',
-        }).then(function (response) {
-                console.log(response.data);
-            });
-     
-    }, []);
-
     return (
         <Form>
             <Form.Group className="mb-3" controlId="formBasicEmail">
