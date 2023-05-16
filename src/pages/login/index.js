@@ -1,11 +1,16 @@
+import { Layout } from "../../style/global";
+import { Modal } from "./styles";
+import { ModalConteudo } from "./styles";
+import  logoSemFundo  from "../../assets/logo-sem-texto.png"
 
-import { ContainerStyled } from "./style";
 export default function Login() {
-    return (
-       <>
-    
-       bannana
-            
-        </>
-    );
+  return (
+   <Layout>
+    <Modal>
+        <ModalConteudo>
+            <img src={logoSemFundo} alt="Logo" width='60%'/>
+        </ModalConteudo>
+    </Modal>
+   </Layout>
+  );
 }
