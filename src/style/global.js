@@ -20,13 +20,21 @@ export const GlobalStyle = createGlobalStyle`
   outline: 0;
   box-sizing: border-box;
   cursor: default;
+  font-family: 'Poppins', sans-serif;
+  font-size: 1rem;
 }
 `;
 
 export const Layout = styled.div`
 background: #1D3D39;
-color: aliceblue;
-
 width: 100%;
 height: 100vh;
 `;
+
+export const Linha = styled.div`
+    align-items: center;
+    border-bottom: 1px solid #dadde1;
+    display: flex;
+    margin: 20px 16px;
+    text-align: center;
+`
