@@ -6,8 +6,10 @@ export const GlobalStyles = createGlobalStyle`
   padding: 0;
   outline: 0;
   box-sizing: border-box;
-  cursor: default;
+  cursor: default; 
   scroll-behavior: smooth !important;
+  font-size: larger;
 }
+
     
 `;

@@ -1,50 +1,69 @@
-import { Box, Button, TextField } from "@mui/material";
-import { BoxLeft, BoxRight, CampoTexto, Container, Logo } from "./styles";
-import logo from "../../assets/logo2.png";
-import { Label, LabelImportant } from "@mui/icons-material";
+import * as M from "@mui/material";
+import * as Styled from "./style";
+import { z } from "zod";
+import { Button, Input } from "@mantine/core";
+import { IconAt } from "@tabler/icons-react";
+import { set, useForm } from "react-hook-form";
+import {zodResolver} from "@hookform/resolvers/zod" 
+import { useState } from "react";
+
+const schemaModel = z.object({
+  email: z.string().nonempty().email("Digite um e-mail valido!"),
+  senha: z.string().min(8, "A senha deve ter no minimo 8 caracteres"),
+});
+
+type schemaModelType = z.infer<typeof schemaModel> 
 
 export default function Login() {
+
+  const [controlLoading, setControlLoading] = useState<boolean>(false);
+
+    const {
+      register,
+      handleSubmit,
+      formState: { errors },
+    } = useForm<schemaModelType>({
+      resolver: zodResolver(schemaModel),
+    });
+
+  const handleFormSubmit = (data: any) => {
+    setControlLoading(true);
+    setTimeout(() => {
+      setControlLoading(false);
+    }, 220)
+    console.log(controlLoading);
+  }  
+
   return (
-    <Container>
-      <BoxLeft />
-      <BoxRight>
-        <Box component="form" noValidate sx={{ mt: 1 }}>
-          <Logo />
-          <Box sx={{ display:"block", width: "50%" }}>
-            <CampoTexto
-              className=""
-              variant="outlined"
-              margin="dense"
-              required
-              fullWidth
-              id="email"
-              color="secondary"
-              name="email"
-              autoComplete="email"
-            />
-            <TextField
-              sx={{  }}
-              margin="normal"
-              required
-              color="info"
-              fullWidth
-              name="password"
-              label="Senha"
-              type="password"
-              id="password"
-              autoComplete="current-password"
-            />
-            <Button
-              type="submit"
-              fullWidth
-              variant="contained"
-              sx={{ mt: 3, mb: 2 }}
-            >
-              Login
-            </Button>
-          </Box>
-        </Box>
-      </BoxRight>
-    </Container>
+    <Styled.Container>
+      <Styled.BoxLeft />
+      <Styled.BoxRight>
+        <M.Box onSubmit={handleSubmit(handleFormSubmit)} component="form" noValidate sx={{ mt: 1 }}>
+          <Styled.Logo />
+
+          <M.Box sx={{ display: "block", width: "60%" }}>
+            <Styled.Group>
+              <Input
+                {...register("email")}
+                icon={<IconAt />}
+                placeholder="Seu e-mail"
+                radius="md"
+                size="lg"
+              />
+
+              <Input
+               {...register("senha")}
+                type="password"
+                placeholder="Digite sua senha"
+                radius="md"
+                size="lg"
+              />
+              
+              <Button type="submit" style={{cursor: "pointer"}} loading={controlLoading} loaderPosition="center">Login</Button>
+            </Styled.Group>
+          </M.Box>
+        </M.Box>
+      </Styled.BoxRight>
+    </Styled.Container>
   );
 }

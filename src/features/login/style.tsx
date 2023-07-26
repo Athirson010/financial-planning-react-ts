@@ -1,22 +1,21 @@
 import styled from 'styled-components';
-import TextField from '@mui/material/TextField/TextField';
 import imagem from "../../assets/cofrinho-lateral-com-moedas-e-notas.jpg"
-import logo from "../../assets/logo4.png"
+import logo from "../../assets/logo3.png"
 
 
 export const Container = styled.div`
-    margin: auto;
-    background-color: #1D3D39;
-    display: flex;
-    flex-flow: inherit;
-    height: 100vh;
-    place-content: center;
+margin: auto;
+background-color: #1D3D39;
+display: flex;
+flex-flow: inherit;
+height: 100vh;
+place-content: center;
 `
 
 export const Logo = styled.div`
-width: 600px;
-height: 300px;
-background-size: cover;
+width: 350px;
+height: 270px;
+background-size: contain;
 background-position: unset;
 background-repeat: no-repeat;
 background-image: url(${logo});
@@ -34,9 +33,9 @@ align-self: center;
 text-align: -webkit-center;
 `
 
+export const Group = styled.div`
+display: flex;
+flex-direction: column;
 
-export const CampoTexto = styled(TextField)`
-width: 50%;
-
-
+row-gap: 12px;
 `
