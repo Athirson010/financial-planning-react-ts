@@ -8,8 +8,5 @@ export const GlobalStyles = createGlobalStyle`
   box-sizing: border-box;
   cursor: default; 
   scroll-behavior: smooth !important;
-  font-size: larger;
 }
-
-    
 `;

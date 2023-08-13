@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 import imagem from "../../assets/cofrinho-lateral-com-moedas-e-notas.jpg"
 import logo from "../../assets/logo3.png"
+import * as M from "@mui/material";
 
 
 export const Container = styled.div`
@@ -36,6 +37,5 @@ text-align: -webkit-center;
 export const Group = styled.div`
 display: flex;
 flex-direction: column;
-
 row-gap: 12px;
 `
