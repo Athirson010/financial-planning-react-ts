@@ -6,17 +6,15 @@ import { IconAt } from "@tabler/icons-react";
 import { set, useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useState } from "react";
-import { toast } from "react-toastify";
 import { auth } from "../../Services/AutenticacaoService";
 
 const schemaModel = z.object({
-  email: z.string().nonempty().email("Digite um e-mail valido!"),
-  senha: z.string().min(8, "A senha deve ter no minimo 8 caracteres"),
+  email: z.string()
+          .nonempty()
+          .email("Digite um e-mail valido!"),
+  senha: z.string()
+          .min(8, "A senha deve ter no minimo 8 caracteres"),
 })
-.transform((field) =>({
-    email: field.email,
-    senha: field.senha
-}));
 
 type schemaModelType = z.infer<typeof schemaModel>;
 
@@ -83,7 +81,7 @@ export default function Login() {
               <M.Grid container marginTop="2rem">
                 <M.Grid item xs>
                 <M.Typography color="#f5f5f1">
-                    <M.Link  style={{ cursor: "pointer" }} href="#" color="inherit">
+                    <M.Link  style={{ cursor: "pointer" }} href="/register" color="inherit">
                       Criar conta
                     </M.Link>
                   </M.Typography>

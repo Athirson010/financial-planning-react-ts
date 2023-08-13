@@ -6,6 +6,7 @@ import Login from "./features/login/index";
 import { GlobalStyles } from "./styles";
 import { ToastContainer } from "react-toastify";
 import 'react-toastify/dist/ReactToastify.css';
+import Cadastro from "./features/cadastro";
 
 function App() {
   return (
@@ -13,7 +14,9 @@ function App() {
       <ToastContainer style={{fontSize:"15px"}}/>
       <GlobalStyles/>
       <Routes>
+        <Route path="/" element={<Login />} />
         <Route path="/login" element={<Login />} />
+        <Route path="/register" element={<Cadastro />} />
       </Routes>
     </ThemeProvider>
   );

@@ -9,7 +9,7 @@ interface ILogin {
 export const auth = async (email:string, senha: string): Promise<ILogin | Error> => {
     try {
       const data: ILogin = await Api.post('/usuarios/autenticar', { email, senha });
-  
+
       if (data) {
         return data;
       }
