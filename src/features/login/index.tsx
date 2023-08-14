@@ -24,17 +24,14 @@ export default function Login() {
   const {
     register,
     handleSubmit,
-    getValues,
     formState: { errors },
   } = useForm<schemaModelType>({
     resolver: zodResolver(schemaModel)
   });
 
-  const handleFormLogin = async () => {
+  const handleFormLogin = async (values: schemaModelType) => {
     setControlLoading(true);
-
-    await auth(getValues('email'), getValues('senha'));
-    
+    await auth(values.email, values.senha);
     setControlLoading(false);
   };
 
